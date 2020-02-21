@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP/2 - Server Push</title>
+
+    <script>
+        function onLinkPreload(url) {
+            const headers = new Headers();
+            const request = new Request(url, {
+                method: 'GET',
+                headers,
+                mode: 'cors',
+                cache: 'no-cache'
+            });
+
+            fetch(request).then(response => response.json().then(data => {
+                console.log('Pushed critical data received');
+
+                const pre = document.querySelector('#data2');
+                const section = pre.parentElement;
+
+                section.classList.remove('hidden');
+                pre.textContent = JSON.stringify(data, null, 2);
+            }));
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="assets/preset.css">
+    <link rel="stylesheet" type="text/css" href="assets/base.css">
+    <link rel="preload" as="fetch" href="api/critical-data" type="application/json" onload="onLinkPreload(this.href)"
+          crossorigin>
+</head>
+
+<body>
+<main>
+    <h2>HTTP/2 - Server Push</h2>
+    <section>
+        <h4>Fetch from script in the body (api/critical-data)</h4>
+        <pre id="data1"></pre>
+    </section>
+    <section class="hidden">
+        <h4>Fetch from link preload as JSON (/languages)</h4>
+        <pre id="data2"></pre>
+    </section>
+</main>
+
+<script src="assets/bundle.js"></script>
+<script>
+    (function () {
+        if (document.readyState === 'loading') {  // Loading hasn't finished yet
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('DOM content loaded');
+            });
+        }
+
+        const headers = new Headers({'accept': 'application/json'});
+        const request = new Request('/languages', {
+            method: 'GET',
+            headers,
+            mode: 'cors',
+            cache: 'no-cache'
+        });
+
+        fetch(request).then(response => response.json().then(data => {
+            console.log('Pushed languages received');
+
+            document.querySelector('#data1').textContent = JSON.stringify(data, null, 2);
+        }));
+    }());
+</script>
+</body>
+
+</html>
