@@ -17,5 +17,5 @@ mkcert localhost
 npm i
 npm start
 ```
-Open https://localhost:3000 and observe HTTP requests in Network tab of dev tools and console logs from the server in the terminal
+Open https://localhost:8080 and observe HTTP requests in Network tab of dev tools and console logs from the server in the terminal
 
