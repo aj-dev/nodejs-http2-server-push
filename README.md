@@ -16,6 +16,6 @@ In project root run:
 mkcert localhost
 npm i
 npm start
-open https://localhost:3000
-observe HTTP requests in Network tab of dev tools and console logs from the server in the terminal
 ```
+Open https://localhost:3000 and observe HTTP requests in Network tab of dev tools and console logs from the server in the terminal
+
