@@ -68,13 +68,13 @@ function getLanguagesFromDB() {
 }
 
 function respondWithPush(stream) {
-    const assetsPaths = [
+    const assetPaths = [
         '/assets/bundle.js',
         '/assets/preset.css',
         '/assets/base.css'
     ];
 
-    assetsPaths.forEach(assetPath => pushStatic(stream, assetPath));
+    assetPaths.forEach(assetPath => pushStatic(stream, assetPath));
 
     pushFromAPI(stream, '/languages');
     pushFromAPI(stream, '/api/critical-data');
