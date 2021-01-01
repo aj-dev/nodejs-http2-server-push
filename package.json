@@ -9,7 +9,7 @@
   "author": "Audrius Jakumavicius",
   "license": "MIT",
   "dependencies": {
-    "mime": "2.4.4",
+    "mime": "2.4.7",
     "prompt": "1.0.0"
   }
 }
