@@ -10,6 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "mime": "2.4.4",
-    "prompt": "1.1.0"
+    "prompt": "1.2.2"
   }
 }
